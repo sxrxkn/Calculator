@@ -2,9 +2,10 @@
  ============================================================================
  Name        : project_01.c
  Author      : Sxrxkn
- Version     : 2.0
+ Version     : 3.0
  Copyright   :
- Description : A calculator that can work with float numbers (with operations as
+ Description : A calculator that can work with files and the console
+               with float numbers (with operations as
                multiplication'*', division'/', addition'+', subtraction'-',
                exponentiation'^',factorial'!') and vectors (with operation as
                addition'+', subtraction'-', scalar multiplication'*').
@@ -25,16 +26,16 @@ int main(int argc,char *argv[]) {
     printf("if you want to work with files, enter (f), if you want to work with the console , enter (c) ");
     scanf(" %c", &c);
     switch (c) {
-    case 'f':
+    case 'f': //If we work with files
         printf("Enter name of input file:");
         scanf(" %s", inputfile);
         printf("Enter name of output file:");
         scanf(" %s", outputfile);
-        input = fopen(inputfile,"r");  // open all files that we need
+        input = fopen(inputfile,"r");
         output = fopen(outputfile, "w");
-   fscanf(input," %c",&op);
-   fscanf(input," %c",&t);
-    if(t == 's'){
+   fscanf(input," %c",&op);//Reading the operation from the file
+   fscanf(input," %c",&t);//Reading the type from the file
+    if(t == 's'){ //If we work with console
         do { // Cycle for correct operation input
             if(op=='+'|| op=='-'||op=='*'||op=='^'||op=='/'||op=='!') r='d';
             else printf("Incorrect operation, \n");}
@@ -98,7 +99,7 @@ int main(int argc,char *argv[]) {
                 fprintf(output,"%f ",e[i]+l[i]);
             fprintf(output,"%c ",br2);
             fprintf(output,"\n");}
-        else if (op == '-'){
+        else if (op == '-'){ // Operation -
             fscanf(input," %i",&size);
             br1='(';
             br2=')';
@@ -120,7 +121,7 @@ int main(int argc,char *argv[]) {
                 fprintf(output,"%f ",e[i]-l[i]);
             fprintf(output,"%c ",br2);
             fprintf(output,"\n");}
-        else if (op == '*'){
+        else if (op == '*'){ //Operation *
             br1='(';
             br2=')';
             fprintf(output,"%c",br1);
@@ -146,7 +147,7 @@ int main(int argc,char *argv[]) {
     fclose(input);
     fclose(output);
     break;
-    case 'c':
+    case 'c': //If we work with console
         printf("For operations on vectors, enter (v), for operations on numbers , enter(n): ");
         scanf(" %c",&c);
         if(c == 'n'){
