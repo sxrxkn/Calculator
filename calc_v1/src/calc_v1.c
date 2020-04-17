@@ -33,117 +33,117 @@ int main(int argc,char *argv[]) {
         scanf(" %s", outputfile);
         input = fopen(inputfile,"r");
         output = fopen(outputfile, "w");
-   fscanf(input," %c",&op);//Reading the operation from the file
-   fscanf(input," %c",&t);//Reading the type from the file
-    if(t == 's'){ //If we work with console
-        do { // Cycle for correct operation input
-            if(op=='+'|| op=='-'||op=='*'||op=='^'||op=='/'||op=='!') r='d';
-            else printf("Incorrect operation, \n");}
-        while (r!='d');
-        if(op == '!'){ // Operation "!"
-            fscanf(input," %f",&a);
-            if  (a>=0){ // If the numbers is greater than 0
-                resu=1;
-                for(int i=1;i<a+1;i++){
-                    resu=resu*i;}
-                fprintf(output,"%.3f! = %.3f",a, resu);}
-            else   printf("Invalid number");} // If the numbers if numbers is less than 0
-        else if (op == '^'){ // Operation "^"
-                   fscanf(input," %f",&a);
-            fscanf(input," %i",&d);
-            res = 1;
-            for(int i=0;i<d;i++) {
-                res=res*a;}
-            fprintf(output,"%.3f ^ %i = %.3f",a, d, res);}
-        else{
-            fscanf(input," %f",&a);
-            fscanf(input," %f",&b);
-            switch (op) { // Operations "+-*/"
-               case '+':
-                    fprintf(output,"%.3f + %.3f = %.3f", a, b, a+b);
-                    break;
-                case '-':
-                    fprintf(output,"%.3f - %.3f = %.3f", a, b, a-b);
-                    break;
-                case '*':
-                    fprintf(output,"%.3f * %.3f = %.3f", a, b, a*b);
-                    break;
-                case '/':
-                    if(b !=0)
-                        fprintf(output,"%.3f / %.3f = %.3f", a, b, a/b);
-                    else fprintf(output,"No solution");// If divide by 0
-                    break; }} }
-    else if(t=='v'){// If we work with vectors
-        e=malloc(size*sizeof(int));
-        l=malloc(size*sizeof(int));
-        resul=malloc(size*sizeof(int));
-        if (op == '+'){ // Operation +
-            fscanf(input," %i",&size);
-            br1='(';
-            br2=')';
-            fprintf(output,"%c",br1);
-            for(int i=0;i<size;i++){ // Cycle for entering the first vector
-                fscanf(input," %f",&e[i]);
-                fprintf(output," %f ",e[i]);}
-            fprintf(output,"%c",br2);
-            fprintf(output," %c ",op);
-            fprintf(output,"%c ",br1);
-            for(int i=0;i<size;i++){ // Cycle for entering the second vector
-                fscanf(input," %f",&l[i]);
-                fprintf(output,"%f ",l[i]);}
-            fprintf(output,"%c",br2);
-            op = '=';
-            fprintf(output," %c ",op);
-            fprintf(output,"%c ",br1);
-            for(int i=0;i<size;i++)
-                fprintf(output,"%f ",e[i]+l[i]);
-            fprintf(output,"%c ",br2);
-            fprintf(output,"\n");}
-        else if (op == '-'){ // Operation -
-            fscanf(input," %i",&size);
-            br1='(';
-            br2=')';
-            fprintf(output,"%c",br1);
-            for(int i=0;i<size;i++){ // Cycle for entering the first vector
-                fscanf(input," %f",&e[i]);
-                fprintf(output," %f ",e[i]);}
-            fprintf(output,"%c",br2);
-            fprintf(output," %c ",op);
-            fprintf(output,"%c ",br1);
-            for(int i=0;i<size;i++){ // Cycle for entering the second vector
-                fscanf(input," %f",&l[i]);
-                fprintf(output,"%f ",l[i]);}
-           fprintf(output,"%c",br2);
-            op = '=';
-            fprintf(output," %c ",op);
-            fprintf(output,"%c ",br1);
-            for(int i=0;i<size;i++)
-                fprintf(output,"%f ",e[i]-l[i]);
-            fprintf(output,"%c ",br2);
-            fprintf(output,"\n");}
-        else if (op == '*'){ //Operation *
-            br1='(';
-            br2=')';
-            fprintf(output,"%c",br1);
-            fscanf(input," %i",&size);
-            for(int i=0;i<size;i++){
-                fscanf(input," %f",&e[i]);
-            fprintf(output,"%f ",e[i]);}
-            fprintf(output,"%c",br2);
-            fprintf(output," %c ",op);
-            fprintf(output,"%c",br1);
-            for(int i=0;i<size;i++){
-                fscanf(input," %f",&l[i]);
-                fprintf(output,"%f ",l[i]);}
-            fprintf(output,"%c",br2);
-            for(int i=0;i<size;i++) // Cycle for for performing the operation *
-                summ=summ + e[i]*l[i];
-            fprintf(output," = %.3f",summ);}
-        else if (op!='*'|| op!="+" || op!="-") // If entered invalid operation
-            fprintf(output,"Invalid operation entered");
-        free(e);
-        free(l);
-        free(resul);}
+        while(feof(input) == 0){
+            fscanf(input," %c",&op);//Reading the operation from the file
+            fscanf(input," %c",&t);//Reading the type from the file
+            if(t == 's'){ //If we work with console
+                do { // Cycle for correct operation input
+                    if(op=='+'|| op=='-'||op=='*'||op=='^'||op=='/'||op=='!') r='d';
+                    else printf("Incorrect operation, \n");}
+                while (r!='d');
+                if(op == '!'){ // Operation "!"
+                    fscanf(input," %f",&a);
+                    if  (a>=0){ // If the numbers is greater than 0
+                        resu=1;
+                        for(int i=1;i<a+1;i++){
+                            resu=resu*i;}
+                        fprintf(output,"%.3f! = %.3f",a, resu);}
+                    else   printf("Invalid number");} // If the numbers if numbers is less than 0
+                else if (op == '^'){ // Operation "^"
+                    fscanf(input," %f",&a);
+                    fscanf(input," %i",&d);
+                    res = 1;
+                    for(int i=0;i<d;i++) {
+                        res=res*a;}
+                    fprintf(output,"%.3f ^ %i = %.3f",a, d, res);}
+                else{
+                    fscanf(input," %f",&a);
+                    fscanf(input," %f",&b);
+                    switch (op) { // Operations "+-*/"
+                    case '+':
+                        fprintf(output,"%.3f + %.3f = %.3f", a, b, a+b);
+                        break;
+                    case '-':
+                        fprintf(output,"%.3f - %.3f = %.3f", a, b, a-b);
+                        break;
+                    case '*':
+                        fprintf(output,"%.3f * %.3f = %.3f", a, b, a*b);
+                        break;
+                    case '/':
+                        if(b !=0)
+                            fprintf(output,"%.3f / %.3f = %.3f", a, b, a/b);
+                else fprintf(output,"No solution");// If divide by 0
+                        break; }} }
+            else if(t=='v'){// If we work with vectors
+                e=malloc(size*sizeof(int));
+                l=malloc(size*sizeof(int));
+                resul=malloc(size*sizeof(int));
+                if (op == '+'){ // Operation +
+                    fscanf(input," %i",&size);
+                    br1='(';
+                    br2=')';
+                    fprintf(output,"%c",br1);
+                    for(int i=0;i<size;i++){ // Cycle for entering the first vector
+                        fscanf(input," %f",&e[i]);
+                        fprintf(output," %f ",e[i]);}
+                    fprintf(output,"%c",br2);
+                    fprintf(output," %c ",op);
+                    fprintf(output,"%c ",br1);
+                    for(int i=0;i<size;i++){ // Cycle for entering the second vector
+                        fscanf(input," %f",&l[i]);
+                        fprintf(output,"%f ",l[i]);}
+                    fprintf(output,"%c",br2);
+                    op = '=';
+                    fprintf(output," %c ",op);
+                    fprintf(output,"%c ",br1);
+                    for(int i=0;i<size;i++)
+                        fprintf(output,"%f ",e[i]+l[i]);
+                    fprintf(output,"%c ",br2);}
+                else if (op == '-'){ // Operation -
+                    fscanf(input," %i",&size);
+                    br1='(';
+                    br2=')';
+                    fprintf(output,"%c",br1);
+                    for(int i=0;i<size;i++){ // Cycle for entering the first vector
+                        fscanf(input," %f",&e[i]);
+                        fprintf(output," %f ",e[i]);}
+                    fprintf(output,"%c",br2);
+                    fprintf(output," %c ",op);
+                    fprintf(output,"%c ",br1);
+                    for(int i=0;i<size;i++){ // Cycle for entering the second vector
+                        fscanf(input," %f",&l[i]);
+                        fprintf(output,"%f ",l[i]);}
+                    fprintf(output,"%c",br2);
+                    op = '=';
+                    fprintf(output," %c ",op);
+                    fprintf(output,"%c ",br1);
+                    for(int i=0;i<size;i++)
+                        fprintf(output,"%f ",e[i]-l[i]);
+                    fprintf(output,"%c ",br2);}
+                else if (op == '*'){ //Operation *
+                    br1='(';
+                    br2=')';
+                    fprintf(output,"%c",br1);
+                    fscanf(input," %i",&size);
+                    for(int i=0;i<size;i++){
+                        fscanf(input," %f",&e[i]);
+                        fprintf(output,"%f ",e[i]);}
+                    fprintf(output,"%c",br2);
+                    fprintf(output," %c ",op);
+                    fprintf(output,"%c",br1);
+                    for(int i=0;i<size;i++){
+                        fscanf(input," %f",&l[i]);
+                        fprintf(output,"%f ",l[i]);}
+                    fprintf(output,"%c",br2);
+                    for(int i=0;i<size;i++) // Cycle for for performing the operation *
+                        summ=summ + e[i]*l[i];
+                    fprintf(output," = %.3f",summ);}
+                else if (op!='*'|| op!='+' || op!='-') // If entered invalid operation
+                    fprintf(output,"Invalid operation entered");
+                free(e);
+                free(l);
+                free(resul);}
+        fprintf(output,"\n");}
     fclose(input);
     fclose(output);
     break;
@@ -164,7 +164,7 @@ int main(int argc,char *argv[]) {
                     resu=1;
                     for(int i=1;i<factorial+1;i++){
                         resu=resu*i;}
-                    printf("Result %2f (operation %c)",resu,factorial);}
+                    printf("Result %2f, %f)",resu,factorial); }
                 else   printf("Invalid number");} // If the numbers if numbers is less than 0
             else if (c == '^'){ // Operation "^"
                 puts("Enter the first number: \n");
@@ -239,7 +239,7 @@ int main(int argc,char *argv[]) {
                 for(int i=0;i<size;i++) // Cycle for for performing the operation *
                     summ=summ + e[i]*l[i];
                 printf("%f",summ);}
-            else if (c!='*'|| c!="+" || c!="-") // If entered invalid operation
+            else if (c!='*'|| c!='+' || c!='-') // If entered invalid operation
                 printf("Invalid operation entered");
             free(e);
             free(l);
