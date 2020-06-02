@@ -66,7 +66,7 @@ int main(int argc,char *argv[]) {
                     i += 1;}}
             fclose(input);
             output = fopen(outputfile, "w");
-            while(i != 0){ // Works until all characters are used
+            while(i != 1){ // Works until all characters are used
                 tmp_numb[counter] = *get_element();
                 if (tmp_numb[counter] == '_'){ // Converting a string to a number and putting it on the stack
                     if (op == '-') {
